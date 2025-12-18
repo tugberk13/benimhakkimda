@@ -19,8 +19,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // ===== ENTER OVERLAY CLICK =====
   enterOverlay.addEventListener('click', () => {
     enterOverlay.style.display = 'none';
-    chillAudio.play();
-    cafeAudio.play();
+    if (chillAudio.paused) chillAudio.play();
+    if (cafeAudio.paused) cafeAudio.play();
   });
 
   // ===== FUNCTION TO SHOW PAGE =====
@@ -34,16 +34,18 @@ document.addEventListener("DOMContentLoaded", () => {
       // stop chill and cafe
       chillAudio.pause();
       cafeAudio.pause();
-      // play Kutiş audio
-      kutisAudio.play();
+      // play Kutiş audio if not already playing
+      if (kutisAudio.paused) kutisAudio.play();
     } else {
-      // stop Kutiş audio if leaving
-      kutisAudio.pause();
-      kutisAudio.currentTime = 0;
-      // play chill and cafe again only if overlay was clicked
+      // stop Kutiş audio
+      if (!kutisAudio.paused) {
+        kutisAudio.pause();
+        kutisAudio.currentTime = 0;
+      }
+      // play chill and cafe only if overlay was clicked and not already playing
       if (enterOverlay.style.display === 'none') {
-        chillAudio.play();
-        cafeAudio.play();
+        if (chillAudio.paused) chillAudio.play();
+        if (cafeAudio.paused) cafeAudio.play();
       }
     }
   }
