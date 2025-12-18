@@ -29,15 +29,18 @@ document.addEventListener("DOMContentLoaded", () => {
     const page = document.getElementById(pageId);
     if (page) page.classList.add('active');
 
-    // AUDIO CONTROL
+    // AUDIO CONTROL (fixed, image-safe)
     if (pageId === 'kutis') {
-      // STOP chill and cafe completely
-      chillAudio.pause();
-      chillAudio.currentTime = 0;
-      cafeAudio.pause();
-      cafeAudio.currentTime = 0;
-
-      // PLAY Kutiş audio if not already playing
+      // STOP Chill + Cafe completely
+      if (!chillAudio.paused) {
+        chillAudio.pause();
+        chillAudio.currentTime = 0;
+      }
+      if (!cafeAudio.paused) {
+        cafeAudio.pause();
+        cafeAudio.currentTime = 0;
+      }
+      // PLAY Kutiş audio
       if (kutisAudio.paused) kutisAudio.play();
     } else {
       // STOP Kutiş audio
@@ -45,8 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
         kutisAudio.pause();
         kutisAudio.currentTime = 0;
       }
-
-      // PLAY chill and cafe only if overlay was clicked and not already playing
+      // RESUME Chill + Cafe if overlay clicked
       if (enterOverlay.style.display === 'none') {
         if (chillAudio.paused) chillAudio.play();
         if (cafeAudio.paused) cafeAudio.play();
