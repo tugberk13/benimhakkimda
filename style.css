@@ -1,0 +1,151 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  overflow: hidden;
+  color: white;
+}
+
+/* BLUR EFFECT */
+.blurred {
+  filter: blur(25px);
+  transition: filter 1s ease;
+}
+
+/* ENTER SCREEN */
+#enterScreen {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.9);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  cursor: pointer;
+  font-size: 32px;
+  text-align: center;
+}
+
+/* BACKGROUND */
+#bg-video {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+}
+
+.overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  z-index: -1;
+}
+
+/* NAVBAR */
+nav {
+  position: fixed;
+  top: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 40px;
+  z-index: 10;
+}
+
+nav button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.hover-grow:hover {
+  transform: scale(1.2);
+}
+
+/* PAGES */
+#pages {
+  width: 400%;
+  display: flex;
+  transition: transform 0.7s ease-in-out;
+}
+
+.page {
+  width: 100vw;
+  height: 100vh;
+  padding-top: 120px;
+  text-align: center;
+}
+
+.page h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.main-btn {
+  margin-top: 30px;
+  padding: 15px 30px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+/* NOTEBOOK */
+.notebook {
+  margin-top: 40px;
+}
+
+.name {
+  font-size: 32px;
+  margin: 20px auto;
+  width: fit-content;
+  padding: 15px 40px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.kutis {
+  background: yellow;
+  color: black;
+  box-shadow: 0 0 20px yellow;
+}
+
+.kutis:hover {
+  transform: scale(1.15);
+  box-shadow: 0 0 40px yellow;
+}
+
+/* ELECTRIC EFFECT */
+.kutis::after {
+  content: "";
+  display: block;
+  height: 4px;
+  background: linear-gradient(90deg, yellow, white, yellow);
+  animation: electric 0.2s infinite;
+}
+
+@keyframes electric {
+  0% { opacity: 0.2; }
+  50% { opacity: 1; }
+  100% { opacity: 0.2; }
+}
+
+/* CREDITS */
+.cool {
+  font-size: 80px;
+  margin-top: 30px;
+  animation: float 2s infinite ease-in-out;
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0); }
+}

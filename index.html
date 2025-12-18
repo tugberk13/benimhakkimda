@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>BenimHakkimda</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ENTER SCREEN -->
+<div id="enterScreen">
+  <h1>Girmek İçin Tıkla ☕🎧✨</h1>
+</div>
+
+<!-- VIDEO BACKGROUND -->
+<video id="bg-video" class="blurred" autoplay muted loop>
+  <source src="cafe.mp4" type="video/mp4">
+</video>
+<div class="overlay blurred"></div>
+
+<!-- AUDIO -->
+<audio id="cafeSound" src="cafe.ogg" loop></audio>
+<audio id="clickSound" src="click.wav"></audio>
+<audio id="hoverSound" src="hover.wav"></audio>
+<audio id="popSound" src="pop.wav"></audio>
+<audio id="chillMusic" src="chill.mp3" loop></audio>
+
+<!-- NAVBAR -->
+<nav class="blurred">
+  <button onclick="goPage('home')">Ana Sayfa</button>
+  <button onclick="goPage('about')" class="hover-grow">Benim Hakkımdalar</button>
+  <button onclick="goPage('credits')">Credits</button>
+</nav>
+
+<!-- PAGES -->
+<div id="pages" class="blurred">
+
+  <!-- HOME -->
+  <section class="page" id="home">
+    <h1>Ana Sayfa!</h1>
+    <p>
+      Benim Hakkımdaya Hoş Geldin.<br>
+      Buu Sayfa Kısacası Eğlence İçin Yaratılmıştır.<br>
+      Daha Fazla Bilgi İçin Alttaki Butona Tıkla:
+    </p>
+    <button class="main-btn" onclick="goPage('learn')">Daha Fazlası</button>
+  </section>
+
+  <!-- LEARN MORE -->
+  <section class="page" id="learn">
+    <h1>Benim Hakkımda Nasıl Oluşturulur?</h1>
+    <p>
+      <strong>Tuğberk'e Mesaj At!</strong><br><br>
+      Mesajında Benim hakkımda olmasını istediğin şeyleri,<br>
+      fotoğrafları ve istediğin şarkıyı at!<br><br>
+      Sayfan <strong>Benim Hakkımdalar</strong> kısmına konulacak!
+    </p>
+  </section>
+
+  <!-- BENIM HAKKIMDALAR -->
+  <section class="page" id="about">
+    <h1>Benim Hakkımdalar 📒</h1>
+    <div class="notebook">
+      <div class="name kutis">⚡ Kutiş ⚡</div>
+    </div>
+  </section>
+
+  <!-- CREDITS -->
+  <section class="page" id="credits">
+    <h1>Credits!! 🥳</h1>
+    <p>Sayfa Tamamen Tuğberk tarafından dizayn edilip yapılmıştır!</p>
+    <div class="cool">😎</div>
+  </section>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
