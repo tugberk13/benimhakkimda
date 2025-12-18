@@ -31,18 +31,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // AUDIO CONTROL
     if (pageId === 'kutis') {
-      // stop chill and cafe
+      // STOP chill and cafe completely
       chillAudio.pause();
+      chillAudio.currentTime = 0;
       cafeAudio.pause();
-      // play Kutiş audio if not already playing
+      cafeAudio.currentTime = 0;
+
+      // PLAY Kutiş audio if not already playing
       if (kutisAudio.paused) kutisAudio.play();
     } else {
-      // stop Kutiş audio
+      // STOP Kutiş audio
       if (!kutisAudio.paused) {
         kutisAudio.pause();
         kutisAudio.currentTime = 0;
       }
-      // play chill and cafe only if overlay was clicked and not already playing
+
+      // PLAY chill and cafe only if overlay was clicked and not already playing
       if (enterOverlay.style.display === 'none') {
         if (chillAudio.paused) chillAudio.play();
         if (cafeAudio.paused) cafeAudio.play();
