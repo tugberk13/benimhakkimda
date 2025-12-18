@@ -1,41 +1,50 @@
-const pages = {
-  home: 0,
-  learn: 1,
-  about: 2,
-  credits: 3
-};
+const enterOverlay = document.getElementById("enter-overlay");
+const app = document.getElementById("app");
 
-let audioUnlocked = false;
+const cafeAudio = document.getElementById("cafe-audio");
+const chillAudio = document.getElementById("chill-audio");
+const kutisAudio = document.getElementById("kutis-audio");
 
-function goPage(page) {
-  document.getElementById("pages").style.transform =
-    `translateX(-${pages[page] * 100}vw)`;
+const clickSound = document.getElementById("click-sound");
+const hoverSound = document.getElementById("hover-sound");
+const popSound = document.getElementById("pop-sound");
 
-  document.getElementById("clickSound").play();
+const pages = document.querySelectorAll(".page");
+
+/* ENTER CLICK */
+enterOverlay.addEventListener("click", () => {
+  enterOverlay.classList.add("hidden");
+  app.classList.add("visible");
+
+  cafeAudio.play();
+  chillAudio.play();
+});
+
+/* PAGE SWITCHING */
+function showPage(id) {
+  pages.forEach(p => p.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+
+  clickSound.play();
+
+  if (id === "kutis") {
+    chillAudio.pause();
+    kutisAudio.play();
+  } else {
+    kutisAudio.pause();
+    kutisAudio.currentTime = 0;
+    chillAudio.play();
+  }
 }
 
-// Hover sounds
-document.querySelectorAll("button, .name").forEach(el => {
+/* NAV + ITEMS */
+document.querySelectorAll("[data-page]").forEach(el => {
+  el.addEventListener("click", () => {
+    showPage(el.dataset.page);
+    popSound.play();
+  });
+
   el.addEventListener("mouseenter", () => {
-    document.getElementById("hoverSound").play();
+    hoverSound.play();
   });
-});
-
-// Kutiş pop
-document.querySelector(".kutis").addEventListener("mouseenter", () => {
-  document.getElementById("popSound").play();
-});
-
-// ENTER SCREEN LOGIC
-document.getElementById("enterScreen").addEventListener("click", () => {
-  document.getElementById("enterScreen").style.display = "none";
-
-  document.querySelectorAll(".blurred").forEach(el => {
-    el.classList.remove("blurred");
-  });
-
-  document.getElementById("cafeSound").play();
-  document.getElementById("chillMusic").play();
-
-  audioUnlocked = true;
 });

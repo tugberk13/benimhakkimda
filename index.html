@@ -1,77 +1,109 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <title>BenimHakkimda</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <title>BenimHakkımda</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<!-- ENTER SCREEN -->
-<div id="enterScreen">
+<!-- ENTER OVERLAY -->
+<div id="enter-overlay">
   <h1>Girmek İçin Tıkla ☕🎧✨</h1>
 </div>
 
-<!-- VIDEO BACKGROUND -->
-<video id="bg-video" class="blurred" autoplay muted loop>
+<!-- BACKGROUND VIDEO -->
+<video id="bg-video" autoplay muted loop>
   <source src="cafe.mp4" type="video/mp4">
 </video>
-<div class="overlay blurred"></div>
 
 <!-- AUDIO -->
-<audio id="cafeSound" src="cafe.ogg" loop></audio>
-<audio id="clickSound" src="click.wav"></audio>
-<audio id="hoverSound" src="hover.wav"></audio>
-<audio id="popSound" src="pop.wav"></audio>
-<audio id="chillMusic" src="chill.mp3" loop></audio>
+<audio id="cafe-audio" src="cafe.ogg" loop></audio>
+<audio id="chill-audio" src="chill.mp3" loop></audio>
+<audio id="kutis-audio" src="kutis.mp3" loop></audio>
 
-<!-- NAVBAR -->
-<nav class="blurred">
-  <button onclick="goPage('home')">Ana Sayfa</button>
-  <button onclick="goPage('about')" class="hover-grow">Benim Hakkımdalar</button>
-  <button onclick="goPage('credits')">Credits</button>
-</nav>
+<audio id="click-sound" src="click.wav"></audio>
+<audio id="hover-sound" src="hover.wav"></audio>
+<audio id="pop-sound" src="pop.wav"></audio>
 
-<!-- PAGES -->
-<div id="pages" class="blurred">
+<!-- APP -->
+<div id="app">
 
-  <!-- HOME -->
-  <section class="page" id="home">
-    <h1>Ana Sayfa!</h1>
-    <p>
-      Benim Hakkımdaya Hoş Geldin.<br>
-      Buu Sayfa Kısacası Eğlence İçin Yaratılmıştır.<br>
-      Daha Fazla Bilgi İçin Alttaki Butona Tıkla:
-    </p>
-    <button class="main-btn" onclick="goPage('learn')">Daha Fazlası</button>
-  </section>
+  <!-- NAVBAR -->
+  <nav>
+    <button data-page="home">Ana Sayfa</button>
+    <button data-page="about">Benim Hakkımdalar</button>
+    <button data-page="credits">Credits</button>
+  </nav>
 
-  <!-- LEARN MORE -->
-  <section class="page" id="learn">
-    <h1>Benim Hakkımda Nasıl Oluşturulur?</h1>
-    <p>
-      <strong>Tuğberk'e Mesaj At!</strong><br><br>
-      Mesajında Benim hakkımda olmasını istediğin şeyleri,<br>
-      fotoğrafları ve istediğin şarkıyı at!<br><br>
-      Sayfan <strong>Benim Hakkımdalar</strong> kısmına konulacak!
-    </p>
-  </section>
+  <!-- PAGES -->
+  <main>
 
-  <!-- BENIM HAKKIMDALAR -->
-  <section class="page" id="about">
-    <h1>Benim Hakkımdalar 📒</h1>
-    <div class="notebook">
-      <div class="name kutis">⚡ Kutiş ⚡</div>
-    </div>
-  </section>
+    <!-- HOME -->
+    <section class="page active" id="home">
+      <h1>Ana Sayfa!</h1>
+      <p>
+        Benim Hakkımdaya Hoş Geldin.<br>
+        Bu Sayfa Kısacası Eğlence İçin Yaratılmıştır.<br><br>
+        Daha Fazla Bilgi İçin Alttaki Butona Tıkla:
+      </p>
 
-  <!-- CREDITS -->
-  <section class="page" id="credits">
-    <h1>Credits!! 🥳</h1>
-    <p>Sayfa Tamamen Tuğberk tarafından dizayn edilip yapılmıştır!</p>
-    <div class="cool">😎</div>
-  </section>
+      <button class="big-btn" data-page="about">Daha Fazlası</button>
+    </section>
 
+    <!-- ABOUT LIST -->
+    <section class="page" id="about">
+      <h1>Benim Hakkımdalar</h1>
+
+      <div class="notebook">
+        <div class="notebook-item kutis-item" data-page="kutis">
+          ⚡ Kutiş ⚡
+        </div>
+      </div>
+    </section>
+
+    <!-- KUTİŞ PAGE -->
+    <section class="page" id="kutis">
+      <div class="kutis-content">
+        <h1>Kutiş...</h1>
+
+        <p>
+          kutiş atatürk ortaokulunda 7-k sınıfında<br>
+          kaslı bir çocuktur.
+        </p>
+
+        <p>o one punch man'e benzer.</p>
+
+        <p class="proof">kanıt?</p>
+
+        <img
+          class="kutis-img"
+          src="https://i.imgur.com/8ZQZQZQ.png"
+          alt="One Punch Man"
+        >
+
+        <p class="kiss-text">kutiş seni öpüyor</p>
+
+        <img
+          class="kutis-img kiss"
+          src="https://i.imgur.com/JYUd4qK.png"
+          alt="Cat Kiss"
+        >
+
+        <button class="back-btn" data-page="about">← Geri Dön</button>
+      </div>
+    </section>
+
+    <!-- CREDITS -->
+    <section class="page" id="credits">
+      <h1>Credits!! 🎉</h1>
+      <p>
+        Sayfa Tamamen Tuğberk tarafından dizayn edilip yapılmıştır!
+      </p>
+      <p>😎</p>
+    </section>
+
+  </main>
 </div>
 
 <script src="script.js"></script>
