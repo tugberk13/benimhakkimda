@@ -28,6 +28,24 @@ document.addEventListener("DOMContentLoaded", () => {
     pages.forEach(page => page.classList.remove('active'));
     const page = document.getElementById(pageId);
     if (page) page.classList.add('active');
+
+    // AUDIO CONTROL
+    if (pageId === 'kutis') {
+      // stop chill and cafe
+      chillAudio.pause();
+      cafeAudio.pause();
+      // play Kutiş audio
+      kutisAudio.play();
+    } else {
+      // stop Kutiş audio if leaving
+      kutisAudio.pause();
+      kutisAudio.currentTime = 0;
+      // play chill and cafe again only if overlay was clicked
+      if (enterOverlay.style.display === 'none') {
+        chillAudio.play();
+        cafeAudio.play();
+      }
+    }
   }
 
   // ===== NAV BUTTONS =====
@@ -36,11 +54,6 @@ document.addEventListener("DOMContentLoaded", () => {
       clickSound.play();
       const target = btn.getAttribute('data-page');
       showPage(target);
-
-      if (target !== 'kutis') {
-        kutisAudio.pause();
-        kutisAudio.currentTime = 0;
-      }
     });
 
     btn.addEventListener('mouseover', () => {
@@ -62,13 +75,6 @@ document.addEventListener("DOMContentLoaded", () => {
       clickSound.play();
       const target = item.getAttribute('data-page');
       showPage(target);
-
-      if (target === 'kutis') {
-        kutisAudio.play();
-      } else {
-        kutisAudio.pause();
-        kutisAudio.currentTime = 0;
-      }
     });
   });
 
@@ -87,11 +93,6 @@ document.addEventListener("DOMContentLoaded", () => {
       clickSound.play();
       const target = btn.getAttribute('data-page');
       showPage(target);
-
-      if (target !== 'kutis') {
-        kutisAudio.pause();
-        kutisAudio.currentTime = 0;
-      }
     });
   });
 
