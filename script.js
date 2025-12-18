@@ -1,98 +1,98 @@
-// ===== SELECT ELEMENTS =====
-const enterOverlay = document.getElementById('enter-overlay');
-const chillAudio = document.getElementById('chill-audio');
-const cafeAudio = document.getElementById('cafe-audio');
-const kutisAudio = document.getElementById('kutis-audio');
+document.addEventListener("DOMContentLoaded", () => {
 
-const clickSound = document.getElementById('click-sound');
-const hoverSound = document.getElementById('hover-sound');
-const popSound = document.getElementById('pop-sound');
+  // ===== SELECT ELEMENTS =====
+  const enterOverlay = document.getElementById('enter-overlay');
+  const chillAudio = document.getElementById('chill-audio');
+  const cafeAudio = document.getElementById('cafe-audio');
+  const kutisAudio = document.getElementById('kutis-audio');
 
-const pages = document.querySelectorAll('.page');
-const navButtons = document.querySelectorAll('nav button');
-const notebookItems = document.querySelectorAll('.notebook-item');
-const bigBtns = document.querySelectorAll('.big-btn');
-const backBtns = document.querySelectorAll('.back-btn');
+  const clickSound = document.getElementById('click-sound');
+  const hoverSound = document.getElementById('hover-sound');
+  const popSound = document.getElementById('pop-sound');
 
-// ===== ENTER OVERLAY CLICK =====
-enterOverlay.addEventListener('click', () => {
-  enterOverlay.style.display = 'none';
-  chillAudio.play();
-  cafeAudio.play();
-});
+  const pages = document.querySelectorAll('.page');
+  const navButtons = document.querySelectorAll('nav button');
+  const notebookItems = document.querySelectorAll('.notebook-item');
+  const bigBtns = document.querySelectorAll('.big-btn');
+  const backBtns = document.querySelectorAll('.back-btn');
 
-// ===== FUNCTION TO SHOW PAGE =====
-function showPage(pageId) {
-  pages.forEach(page => page.classList.remove('active'));
-  const page = document.getElementById(pageId);
-  if (page) {
-    page.classList.add('active');
+  // ===== ENTER OVERLAY CLICK =====
+  enterOverlay.addEventListener('click', () => {
+    enterOverlay.style.display = 'none';
+    chillAudio.play();
+    cafeAudio.play();
+  });
+
+  // ===== FUNCTION TO SHOW PAGE =====
+  function showPage(pageId) {
+    pages.forEach(page => page.classList.remove('active'));
+    const page = document.getElementById(pageId);
+    if (page) page.classList.add('active');
   }
-}
 
-// ===== NAV BUTTONS =====
-navButtons.forEach(btn => {
-  btn.addEventListener('click', () => {
-    clickSound.play();
-    const target = btn.getAttribute('data-page');
-    showPage(target);
+  // ===== NAV BUTTONS =====
+  navButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      clickSound.play();
+      const target = btn.getAttribute('data-page');
+      showPage(target);
 
-    // stop Kutiş audio if leaving that page
-    if (target !== 'kutis') {
-      kutisAudio.pause();
-      kutisAudio.currentTime = 0;
-    }
-  });
-});
+      if (target !== 'kutis') {
+        kutisAudio.pause();
+        kutisAudio.currentTime = 0;
+      }
+    });
 
-// ===== NOTEBOOK ITEMS (like Kutiş) =====
-notebookItems.forEach(item => {
-  item.addEventListener('mouseover', () => {
-    popSound.play();
-    item.style.transform = 'scale(1.2)';
-  });
-  item.addEventListener('mouseout', () => {
-    item.style.transform = 'scale(1)';
+    btn.addEventListener('mouseover', () => {
+      hoverSound.play();
+    });
   });
 
-  item.addEventListener('click', () => {
-    clickSound.play();
-    const target = item.getAttribute('data-page');
-    showPage(target);
+  // ===== NOTEBOOK ITEMS =====
+  notebookItems.forEach(item => {
+    item.addEventListener('mouseover', () => {
+      popSound.play();
+      item.style.transform = 'scale(1.2)';
+    });
+    item.addEventListener('mouseout', () => {
+      item.style.transform = 'scale(1)';
+    });
 
-    // if Kutiş page, play specific audio
-    if (target === 'kutis') {
-      kutisAudio.play();
-    }
+    item.addEventListener('click', () => {
+      clickSound.play();
+      const target = item.getAttribute('data-page');
+      showPage(target);
+
+      if (target === 'kutis') {
+        kutisAudio.play();
+      } else {
+        kutisAudio.pause();
+        kutisAudio.currentTime = 0;
+      }
+    });
   });
-});
 
-// ===== BIG BUTTONS (like "Daha Fazlası") =====
-bigBtns.forEach(btn => {
-  btn.addEventListener('click', () => {
-    clickSound.play();
-    const target = btn.getAttribute('data-page');
-    showPage(target);
+  // ===== BIG BUTTONS =====
+  bigBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      clickSound.play();
+      const target = btn.getAttribute('data-page');
+      showPage(target);
+    });
   });
-});
 
-// ===== BACK BUTTONS =====
-backBtns.forEach(btn => {
-  btn.addEventListener('click', () => {
-    clickSound.play();
-    const target = btn.getAttribute('data-page');
-    showPage(target);
+  // ===== BACK BUTTONS =====
+  backBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      clickSound.play();
+      const target = btn.getAttribute('data-page');
+      showPage(target);
 
-    if (target !== 'kutis') {
-      kutisAudio.pause();
-      kutisAudio.currentTime = 0;
-    }
+      if (target !== 'kutis') {
+        kutisAudio.pause();
+        kutisAudio.currentTime = 0;
+      }
+    });
   });
-});
 
-// ===== HOVER SOUND FOR NAV BUTTONS =====
-navButtons.forEach(btn => {
-  btn.addEventListener('mouseover', () => {
-    hoverSound.play();
-  });
 });
